@@ -16,7 +16,7 @@ fullscreen = 1
 
 android.api = 35
 android.minapi = 24
-android.ndk = 23b
+android.ndk = 28c
 android.sdk = 30
 android.archs = arm64-v8a
 
@@ -25,9 +25,6 @@ android.permissions = CAMERA, VIBRATE, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STO
 android.allow_backup = True
 android.debug = True
 
-# ==========================================
-# ڈیبگنگ کے لیے لاگ لیول بڑھا دیا
-# ==========================================
 log_level = 2
 
 android.gradle_dependencies = 
