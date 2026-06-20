@@ -26,18 +26,15 @@ android.allow_backup = True
 android.debug = True
 
 # ==========================================
-# یہ نئی لائنیں شامل کریں (اگر نہیں ہیں)
+# ڈیبگنگ کے لیے لاگ لیول بڑھا دیا
 # ==========================================
+log_level = 2
 
 android.gradle_dependencies = 
 android.add_src = 
 android.add_activity = 
 android.add_meta_data = 
 android.used_permissions = CAMERA, VIBRATE
-
-# ==========================================
-# بڑی فائلوں کے لیے (اگر ضرورت ہو)
-# ==========================================
 
 android.accept_sdk_license = True
 android.ndk_license_accept = True
