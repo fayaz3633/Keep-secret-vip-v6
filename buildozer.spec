@@ -2,29 +2,42 @@
 
 title = Keep Secret VIP
 package.name = keepsecretvip
-package.domain = org.fayaz.wallet
+package.domain = org.fayaz
 
 source.dir = .
-source.include_exts = py,png,jpg,jpeg,kv,atlas,json,db
+source.include_exts = py,png,jpg,kv,atlas,db
 
-version = 6.0
+version = 1.0
 
 requirements = python3,kivy,pycryptodome
 
 orientation = portrait
-fullscreen = 0
+fullscreen = 1
 
-android.api = 33
+android.api = 35
 android.minapi = 24
-android.ndk_api = 21
-
-android.permissions = CAMERA,VIBRATE
-
+android.ndk = 23b
+android.sdk = 30
 android.archs = arm64-v8a
 
+android.permissions = CAMERA, VIBRATE, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE
+
+android.allow_backup = True
+android.debug = True
+
+# ==========================================
+# یہ نئی لائنیں شامل کریں (اگر نہیں ہیں)
+# ==========================================
+
+android.gradle_dependencies = 
+android.add_src = 
+android.add_activity = 
+android.add_meta_data = 
+android.used_permissions = CAMERA, VIBRATE
+
+# ==========================================
+# بڑی فائلوں کے لیے (اگر ضرورت ہو)
+# ==========================================
+
 android.accept_sdk_license = True
-
-[buildozer]
-
-log_level = 2
-warn_on_root = 0
+android.ndk_license_accept = True
