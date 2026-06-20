@@ -22,12 +22,21 @@ from kivy.utils import platform
 from kivy.uix.screenmanager import ScreenManager, Screen
 
 # ==========================================
-# ANDROID PATHS
+# ANDROID PATHS (بلڈ کے دوران سیف)
 # ==========================================
 
-if platform == "android":
+try:
     from android.permissions import request_permissions, Permission
     from android.storage import app_storage_path
+except ImportError:
+    # بلڈ/ڈیسک ٹاپ ماحول کے لیے ڈمی
+    def request_permissions(*args, **kwargs):
+        pass
+    Permission = None
+    def app_storage_path():
+        return "."
+
+if platform == "android":
     DB_FILE = os.path.join(app_storage_path(), "vault.db")
 else:
     DB_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vault.db")
@@ -314,7 +323,7 @@ class ViewScreen(Screen):
         self.ids.secret_list.text = output
 
     def decrypt_selected(self):
-        App.get_running_app().start_timer()  # یوزر ایکٹیویٹی پر ٹائمر ری سیٹ کریں
+        App.get_running_app().start_timer()
         secret_id = self.ids.secret_id.text
         if not secret_id:
             return
@@ -354,12 +363,9 @@ class KeepSecretVIPApp(App):
                 pass
         return Builder.load_string(KV)
 
-    # ----------------------
-    # AUTO LOCK TIMER LOGIC
-    # ----------------------
     def start_timer(self):
         self.stop_timer()
-        if self.session_pin:  # صرف لاگ ان ہونے کے بعد ٹائمر چلائیں
+        if self.session_pin:
             self.timeout_event = Clock.schedule_once(self.auto_lock, 60)
 
     def stop_timer(self):
@@ -379,4 +385,3 @@ class KeepSecretVIPApp(App):
 
 if __name__ == "__main__":
     KeepSecretVIPApp().run()
-  
